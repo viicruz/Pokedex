@@ -5,7 +5,6 @@ import {
     SafeAreaView
 } from "react-native";
 import PokeCard from '../../components/common/PokeCard'
-import TabBar from '../../components/common/TabBar'
 type Props = {}
 
 export default function Home({ }: Props) {
