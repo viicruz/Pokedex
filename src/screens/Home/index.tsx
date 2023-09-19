@@ -11,12 +11,20 @@ export default function Home() {
       try {
         const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
         const data = await response.json();
+
+        // Mapeie os resultados para formatá-los
         
-        // Mapeie os resultados para formatá-los como você precisa
-        const formattedData = data.results.map((result, index) => ({
-          id: index + 1,
-          pokename: result.name,
-          pokeimage: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`,
+        const formattedData = await Promise.all(data.results.map(async (result, index) => {
+          const pokemonResponse = await fetch(result.url);
+          const pokemonData = await pokemonResponse.json();
+          const types = pokemonData.types.map((typeInfo) => typeInfo.type.name);
+
+          return {
+            id: index + 1,
+            pokename: result.name,
+            pokeimage: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`,
+            types: types,
+          };
         }));
 
         setPokeData(formattedData);
@@ -33,7 +41,7 @@ export default function Home() {
       <FlatList
         numColumns={2}
         data={pokeData}
-        renderItem={({ item }) => <PokeCard image={item.pokeimage} title={item.pokename.toUpperCase()} />}
+        renderItem={({ item }) => <PokeCard image={item.pokeimage} title={item.pokename.toUpperCase()} type={item.types} />}
         keyExtractor={(item) => item.id.toString()}
       />
     </SafeAreaView>

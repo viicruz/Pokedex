@@ -18,4 +18,10 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize:22
   },
+
+  pokeTypeContainer: {
+    color: 'black',
+    fontWeight: '600',
+    fontSize:16
+  },
 });
