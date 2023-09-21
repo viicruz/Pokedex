@@ -14,7 +14,7 @@ export default function Home() {
 
         // Mapeie os resultados para formatá-los
         
-        const formattedData = await Promise.all(data.results.map(async (result, index) => {
+          const formattedData = await Promise.all(data.results.map(async (result, index) => {
           const pokemonResponse = await fetch(result.url);
           const pokemonData = await pokemonResponse.json();
           const types = pokemonData.types.map((typeInfo) => typeInfo.type.name);

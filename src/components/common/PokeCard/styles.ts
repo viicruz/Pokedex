@@ -22,6 +22,9 @@ export const styles = StyleSheet.create({
   pokeTypeContainer: {
     color: 'black',
     fontWeight: '600',
-    fontSize:16
+    fontSize:16,
+    borderColor:'gray',
+    borderWidth:2
+
   },
 });
