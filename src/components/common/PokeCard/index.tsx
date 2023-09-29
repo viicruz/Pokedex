@@ -6,7 +6,6 @@ type Props = {
   title: string;
   image: string;
   type: string[],
-
 };
 
 const typeColors = {
@@ -30,16 +29,31 @@ const typeColors = {
   fairy: '#D685AD',
 };
 
+export default function PokeCard(props: Props) {
+  const { title, image, type } = props;
 
+  // Função para renderizar as badges de tipo
+  const renderTypeBadges = () => {
+    return type.map((typeName, index) => {
+      const backgroundColor = typeColors[typeName.toLowerCase()] || 'gray';
 
-export default function index(props: Props) {
+      return (
+        <View key={index} style={[styles.badge, { backgroundColor }]}>
+          <Text style={styles.badgeText}>{typeName}</Text>
+        </View>
+      );
+    });
+  };
 
   const backgroundColor = typeColors[props.type[0].toLowerCase()] || 'gray';
+
   return (
-    <View style={[styles.wrap, { backgroundColor }]}>
-      <Text style={styles.titleContainer}>{props.title}</Text>
-      <Image source={{ uri: props.image }} style={{ width: 120, height: 120 }} />
-      <Text style={styles.pokeTypeContainer}>{props.type.join(" ")}</Text>
+    <View style={[styles.wrap,{backgroundColor}]}>
+      <Text style={styles.titleContainer}>{title}</Text>
+      <Image source={{ uri: image }} style={{ width: 120, height: 120 }} />
+      <View style={styles.badgesContainer }>
+        {renderTypeBadges()}
+      </View>
     </View>
   );
 }

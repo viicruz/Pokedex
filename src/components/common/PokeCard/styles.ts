@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     width: 180,
     height: 180,
     borderRadius: 10,
-    borderColor:'black',
+    
     borderWidth:2,
     marginHorizontal: 5,
     padding: 5,
@@ -19,12 +19,23 @@ export const styles = StyleSheet.create({
     fontSize:22
   },
 
-  pokeTypeContainer: {
-    color: 'black',
-    fontWeight: '600',
-    fontSize:16,
-    borderColor:'gray',
-    borderWidth:2
-
+  badgesContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',     
+    marginBottom: 8,      
+  },
+  badge: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 16,
+    marginRight: 8,       
+    marginBottom: 2,      
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
+
