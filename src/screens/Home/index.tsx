@@ -41,7 +41,7 @@ export default function Home() {
       <FlatList
         numColumns={2}
         data={pokeData}
-        renderItem={({ item }) => <PokeCard image={item.pokeimage} title={item.pokename.toUpperCase()} type={item.types} />}
+        renderItem={({ item }) => <PokeCard image={item.pokeimage} title={item.pokename} type={item.types} />}
         keyExtractor={(item) => item.id.toString()}
       />
     </SafeAreaView>
