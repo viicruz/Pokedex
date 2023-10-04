@@ -6,6 +6,7 @@ import { typeColors, typeBgColors, typeBorderColors, typeColorVariants } from '.
 
 
 type Props = {
+  id?: string;
   title: string;
   image: string;
   type: string[],
@@ -13,7 +14,7 @@ type Props = {
 
 
 export default function PokeCard(props: Props) {
-  const { title, image, type } = props;
+  const { title, image, type, id } = props;
 
   // Função para renderizar as badges de tipo
   const renderTypeBadges = () => {
@@ -24,7 +25,9 @@ export default function PokeCard(props: Props) {
 
       return (
         <LinearGradient start={{ x: 0.5, y: 1 }} end={{ x: 0.5, y: 0 }} colors={[`${typeColorVariants[typeName.toLowerCase()]}`, `${backgroundColor}`,]} key={index} style={[styles.badge, { backgroundColor }]}>
+
           <Text style={styles.badgeText}>{formmatedPokeTypeText}</Text>
+
         </LinearGradient>
       );
     });
@@ -36,11 +39,22 @@ export default function PokeCard(props: Props) {
 
   return (
     <View style={[styles.wrap, { backgroundColor }, { borderColor }]}>
-      <Text style={styles.titleContainer}>{formmatPokeName}</Text>
-      <Image source={{ uri: image }} style={{ width: 120, height: 120 }} />
-      <View style={styles.badgesContainer}>
-        {renderTypeBadges()}
+      <View style={styles.pkmInfo}>
+        <View>
+          <Text style={styles.idContainer}>#0{props.id}</Text>
+        </View>
+        <Text style={styles.titleContainer}>{formmatPokeName}</Text>
+        <View style={styles.badgesContainer}>
+          {renderTypeBadges()}
+        </View>
       </View>
+      <View style={styles.imageContainer}>
+        <Image source={require('../../../assets/pokeballBackground.png')} style={{ width: 150, height: 150, position: 'relative', opacity: 0.4 }}></Image>
+
+        <Image source={{ uri: image }} style={{ width: 120, height: 120, position: 'absolute' }} />
+
+      </View>
+
     </View>
   );
 }

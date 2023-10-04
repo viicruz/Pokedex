@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, FlatList, Text, SafeAreaView } from "react-native";
 import PokeCard from '../../components/common/PokeCard';
+import { styles } from "./styles"
 
 export default function Home() {
   const [pokeData, setPokeData] = useState([]);
@@ -22,7 +23,7 @@ export default function Home() {
           return {
             id: index + 1,
             pokename: result.name,
-            pokeimage: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`,
+            pokeimage: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`,
             types: types,
           };
         }));
@@ -35,13 +36,12 @@ export default function Home() {
 
     fetchPokeAPI();
   }, []);
-
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <FlatList
-        numColumns={2}
+        contentContainerStyle={{ paddingHorizontal: 16 }}
         data={pokeData}
-        renderItem={({ item }) => <PokeCard image={item.pokeimage} title={item.pokename} type={item.types} />}
+        renderItem={({ item }) => <PokeCard id={item.id} image={item.pokeimage} title={item.pokename} type={item.types} />}
         keyExtractor={(item) => item.id.toString()}
       />
     </SafeAreaView>

@@ -2,37 +2,63 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrap: {
-    width: 180,
-    height: 180,
+    display: "flex",
+    flexDirection: "row",
+    position: "relative",
+    width: "100%",
+    height: 128,
     borderRadius: 10,
     borderWidth: 2,
-    marginHorizontal: 5,
     padding: 5,
-    justifyContent: "flex-start",
+    marginBottom: 12,
+    overflow:'hidden'
+  },
+
+  imageContainer: {
+    width: "50%",
+    height: "100%",
+    justifyContent: "center",
     alignItems: "center",
-    marginBottom: 5,
+    display: "flex",
   },
 
   titleContainer: {
-    color: "#020617",
+    color: "black",
     fontWeight: "bold",
     fontSize: 22,
+    flexDirection: "row",
+    paddingLeft: 10,
+  },
+
+  idContainer: {
+    color: "black",
+    fontWeight: "bold",
+    fontSize: 20,
+    paddingLeft: 10,
+  },
+
+  pkmInfo: {
+    display: "flex",
+    flexDirection: "column",
+    width: "50%",
+    gap: 6,
   },
 
   badgesContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    gap: 4,
+    maxWidth: "50%",
   },
   badge: {
-    marginVertical: -8,
-    paddingHorizontal: 8,
+    width: "75%",
     borderRadius: 8,
-    marginRight: 8,
-    alignItems: "center",
-    justifyContent: "center",
   },
   badgeText: {
     color: "white",
     fontWeight: "bold",
+    textAlign: "center",
   },
 });

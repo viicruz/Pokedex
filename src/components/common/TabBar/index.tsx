@@ -1,4 +1,4 @@
-import { Touchable, TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import { style } from './style'
 import { useNavigation } from "@react-navigation/native";
 import type {
@@ -6,8 +6,7 @@ import type {
 } from '@react-navigation/bottom-tabs'
 
 
-import Home from '../../../screens/Home'
-import Favorite from '../../../screens/Favorite'
+
 
 import { House, Star } from 'phosphor-react-native'
 
@@ -16,19 +15,22 @@ interface Props extends BottomTabBarProps { }
 
 export default function TabBar(props: Props) {
   const navigation = useNavigation();
+  const position = props.state.index;
+
   return (
     <View style={style.container}>
-      <TouchableOpacity onPress={()=>{
+      <TouchableOpacity onPress={() => {
         navigation.navigate("Home" as never);
       }} style={style.tabButton}>
-        
-      <House size={32} color='red'/>
+
+        <House size={32} color={position === 0 ? 'red' : 'grey'} />
       </TouchableOpacity >
-      <TouchableOpacity onPress={()=>{
+
+      <TouchableOpacity onPress={() => {
         navigation.navigate("Favorite" as never);
       }} style={style.tabButton}>
 
-        <Star size={32} color='red'/>
+        <Star color={position === 1 ? 'red' : 'grey'} size={32} />
       </TouchableOpacity>
     </View>
 
