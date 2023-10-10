@@ -2,24 +2,21 @@ import { View, Text, Image } from 'react-native';
 import { styles } from './styles';
 import { LinearGradient } from 'expo-linear-gradient';
 import { typeColors, typeBgColors, typeBorderColors, typeColorVariants } from '../../../assets/pokeColors/styles'
-
-
+import usePokemon from '../../../Hooks/Queries/usePokemon';
 
 type Props = {
-  id?: string;
-  title: string;
-  image: string;
-  type: string[],
+  name: string;
 };
 
 
 export default function PokeCard(props: Props) {
-  const { title, image, type, id } = props;
+  const {name} = props;
+  const pokemon = usePokemon(1);
 
   // Função para renderizar as badges de tipo
   const renderTypeBadges = () => {
-    return type.map((typeName, index) => {
-      const formmatedPokeTypeText = typeName.charAt(0).toUpperCase() + typeName.slice(1);
+    return pokemon.data.types.map((types, index) => {
+      const formmatedPokeTypeText = types.charAt(0).toUpperCase() + types.slice(1);
 
       const backgroundColor = typeColors[typeName.toLowerCase()] || 'grey';
 
@@ -33,9 +30,9 @@ export default function PokeCard(props: Props) {
     });
   };
 
-  const formmatPokeName = title.charAt(0).toUpperCase() + title.slice(1);
-  const backgroundColor = typeBgColors[props.type[0].toLowerCase()] || 'gray';
-  const borderColor = typeBorderColors[props.type[0].toLowerCase()] || 'gray';
+  const formmatPokeName = name.charAt(0).toUpperCase() + name.slice(1);
+  const backgroundColor = typeBgColors[props.types[0].toLowerCase()] || 'gray';
+  const borderColor = typeBorderColors[props.types[0].toLowerCase()] || 'gray';
 
   return (
     <View style={[styles.wrap, { backgroundColor }, { borderColor }]}>
