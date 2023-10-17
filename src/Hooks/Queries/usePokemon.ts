@@ -1,4 +1,31 @@
 import { useQuery } from "@tanstack/react-query";
+interface PokemonSprites {
+  back_default: string | null;
+  back_female: string | null;
+  back_shiny: string | null;
+  back_shiny_female: string | null;
+  front_default: string | null;
+  front_female: string | null;
+  front_shiny: string | null;
+  front_shiny_female: string | null;
+  other: {
+    dream_world: {
+      front_default: string | null;
+      front_female: string | null;
+    };
+    home: {
+      front_default: string | null;
+      front_female: string | null;
+      front_shiny: string | null;
+      front_shiny_female: string | null;
+    };
+    official_artwork: {
+      front_default: string | null;
+      front_shiny: string| null;
+    };
+  };
+}
+
 type apiResponse = {
   abilities: any[];
   base_experience: number;
@@ -14,7 +41,7 @@ type apiResponse = {
   order: number;
   past_types: any[];
   species: any[];
-  sprites: any[];
+  sprites: PokemonSprites;
   stats: any[];
   types: {
     slot: number;
@@ -25,13 +52,14 @@ type apiResponse = {
   }[];
   weight: number;
 };
-async function getPokemon(id: number) {
+async function getPokemon(id: string | number) {
   const url = "https://pokeapi.co/api/v2/pokemon/" + id;
   const response = await fetch(url);
   return (await response.json()) as apiResponse;
 }
 
-export default function usePokemon(id: number) {
+
+export default function usePokemon(id: string | number) {
   return useQuery(
     ["Pokemon", id],
     () => {

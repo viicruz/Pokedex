@@ -61,4 +61,9 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
+  loadingText:{
+    color: "black",
+    fontWeight: "bold",
+    textAlign: "center",
+  }
 });
