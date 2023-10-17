@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, SafeAreaView, TouchableOpacity, View, Text } from "react-native";
+import { SafeAreaView, View} from "react-native";
 import { styles } from "./styles"
 import { MagnifyingGlass } from "phosphor-react-native";
 import { FlashList } from "@shopify/flash-list";
@@ -11,8 +11,10 @@ import SearchBar from "../../components/common/SearchBar";
 //Hook imports
 import usePaginatedPokemons from "../../Hooks/Queries/usePaginatedfPokemons";
 
+
 export default function Home() {
-  const [searchPokemon, setSearchPokemon] = useState('');
+  const [query, setQuery] = useState('');
+  const [searchpokemons, setSearchPokemons] =  useState('');
   const { nextPage, pokemons } = usePaginatedPokemons();
 
 

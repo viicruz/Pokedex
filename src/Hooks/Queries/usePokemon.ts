@@ -26,7 +26,7 @@ interface PokemonSprites {
   };
 }
 
-type apiResponse = {
+ export type apiResponse = {
   abilities: any[];
   base_experience: number;
   forms: any[];
