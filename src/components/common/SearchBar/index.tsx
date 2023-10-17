@@ -4,7 +4,6 @@ import { styles } from './styles';
 
 type Props = {
     icon: React.ReactNode
-    onSearch: (text:string) => void
 }
 
 
@@ -16,7 +15,7 @@ export default function SearchBar(props: Props) {
                 <View>
                 {props.icon}
                 </View>    
-                <TextInput placeholder='Pesquisar...' onChangeText={props.onSearch}/>
+                <TextInput placeholder='Pesquisar...'/>
             </View>
 
 

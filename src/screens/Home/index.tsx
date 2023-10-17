@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <SearchBar icon={<MagnifyingGlass size={20} />} onSearch={() => { }} />
+      <SearchBar icon={<MagnifyingGlass size={20} />}/>
       {
         pokemons.length > 0 && <View style={{ flex: 1 }}>
           <FlashList
