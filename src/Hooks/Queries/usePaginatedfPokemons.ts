@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 
-type Pokeresults = {
+export type Pokeresults = {
   name: string;
   url: string;
 };
@@ -19,7 +19,8 @@ async function getPaginatedPokemons(url: string) {
   return tmp as apiResponse;
 }
 
-export default function usePaginatedPokemons() {
+export function usePaginatedPokemons() {
+
   const [page, setPage] = useState(
     "https://pokeapi.co/api/v2/pokemon?offset=0&limit=50"
   );
@@ -54,6 +55,5 @@ export default function usePaginatedPokemons() {
     setPage(pagination.next);
     
   };
-
   return { query, nextPage, pokemons };
 }

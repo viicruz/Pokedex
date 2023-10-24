@@ -9,14 +9,14 @@ import useDebounce from '../../../Hooks/useDebouncer';
 
 type Props = {
     icon: React.ReactNode
-    setQuery?: (query: string) => void
+    pokeSearch: (query: string) => void
 }
 
 export default function SearchBar(props: Props) {
     const [query, setQuery] = useState('');
     const debouncedQuery = useDebounce(query, 500);
     useEffect(() => {
-        setQuery(debouncedQuery);
+        props.pokeSearch(query);
     }, [debouncedQuery]);
 
     return (
