@@ -30,7 +30,7 @@ export default function PokeCard(props: Props) {
     <View style={[styles.wrap, { backgroundColor }, { borderColor }]}>
       <View style={styles.pkmInfo}>
         <View>
-          <Text style={styles.idContainer}>#{pokemon.data.id}</Text>
+          <Text style={styles.idContainer}>#0{pokemon.data.id}</Text>
         </View>
         <Text style={styles.titleContainer}>{formattedPokeName}</Text>
         <View style={styles.badgesContainer}>

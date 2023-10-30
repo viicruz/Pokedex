@@ -8,9 +8,9 @@ type Props = {}
 export default function PokeDetailScreen({ route }) {
     const { name, imageUrl } = route.params;    
     return (
-        <View>
+        <SafeAreaView style={styles.wrap}>
             <PokemonDetail name={name} imageUrl={imageUrl} />
-        </View>
+        </SafeAreaView>
 
     )
 }
