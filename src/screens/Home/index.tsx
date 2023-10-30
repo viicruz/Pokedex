@@ -1,8 +1,10 @@
+//Libraries imports
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, View } from "react-native";
 import { styles } from "./styles";
 import { MagnifyingGlass } from "phosphor-react-native";
 import { FlashList } from "@shopify/flash-list";
+import { useNavigation } from "@react-navigation/native";
 
 // Components Imports
 import PokeCard from '../../components/common/PokeCard';
@@ -25,6 +27,17 @@ export default function Home() {
     }
   }, [query, allPokemons]);
 
+  const navigation = useNavigation();
+
+  const handlePokeCardClick = (name: string, imageUrl: string) => {  
+    //@ts-ignore
+    navigation.navigate('PokeDetailScreen', {
+      name,
+      imageUrl,
+    });
+
+  }
+
   return (
     <SafeAreaView style={styles.container}>
 
@@ -41,7 +54,7 @@ export default function Home() {
             onEndReachedThreshold={0.5}
             data={pokemons || []}
             renderItem={({ item }) => (
-              <PokeCard name={item.name} />
+              <PokeCard onPress={ () => handlePokeCardClick(item.name, item.url) } name={item.name} />
             )}
             keyExtractor={(item) => item.name}
           />

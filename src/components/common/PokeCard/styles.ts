@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     padding: 5,
     marginBottom: 12,
-    overflow:'hidden'
+    overflow: "hidden",
   },
 
   imageContainer: {
@@ -52,18 +52,10 @@ export const styles = StyleSheet.create({
     gap: 4,
     maxWidth: "50%",
   },
-  badge: {
-    width: "75%",
-    borderRadius: 8,
-  },
-  badgeText: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  loadingText:{
+
+  loadingText: {
     color: "black",
     fontWeight: "bold",
     textAlign: "center",
-  }
+  },
 });

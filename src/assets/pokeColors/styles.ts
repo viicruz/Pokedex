@@ -48,7 +48,7 @@ export const typeBgColors = {
   electric: "#fff672",
   grass: "#aaed83",
   ice: "#b1fffc",
-  fighting: "#fe8883",
+  fighting:"#fe8883",
   poison: "#ee90ec",
   ground: "#fee58a",
   flying: "#b895ff",

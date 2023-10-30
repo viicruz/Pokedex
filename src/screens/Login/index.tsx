@@ -56,7 +56,7 @@ export default function Login({ }: Props) {
         }} placeholder='Senha' secureTextEntry={true} />
         <Button name='Entrar' onPress={handleLogin} />
       </View>
-      <Footer textName="Don't have an account?" buttonName="Sign Up" goTo="SignUp" />
+      <Footer textName="Don't have an account?" buttonName="Sign Up" goTo="Sign Up" />
 
     </View>
 
