@@ -49,7 +49,6 @@ export default function HomeStack() {
                 <View>
                   <TouchableOpacity style={{ paddingRight: 20, paddingTop: 20 }} onPress={() => {
                     navigation.navigate("Favorite" as never);
-
                   }}>
                     <Heart size={24} color='white' />
                   </TouchableOpacity>
