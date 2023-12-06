@@ -1,6 +1,6 @@
 //Libraries imports
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, View } from "react-native";
+import { SafeAreaView, View} from "react-native";
 import { styles } from "./styles";
 import { MagnifyingGlass } from "phosphor-react-native";
 import { FlashList } from "@shopify/flash-list";
@@ -40,6 +40,7 @@ export default function Home() {
 
   return (
     <SafeAreaView style={styles.container}>
+      
 
       <SearchBar icon={<MagnifyingGlass size={20} />} pokeSearch={setQuery} />
 

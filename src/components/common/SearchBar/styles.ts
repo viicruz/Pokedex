@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   wrap: {
     display: "flex",
     alignItems: "center",
+    backgroundColor:'transparent',
 },
 
   inputContainer: {
