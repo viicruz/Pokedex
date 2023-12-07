@@ -1,5 +1,5 @@
-import {useState} from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
+import { View, Text, Image, TouchableOpacity, } from 'react-native';
 import { styles } from './styles';
 import { Heart } from 'phosphor-react-native';
 import { typeBgColors, typeBorderColors } from '../../../assets/pokeColors/styles';
@@ -32,7 +32,7 @@ export default function PokeCard(props: Props) {
   return (
     <View style={[styles.wrap, { backgroundColor }, { borderColor }]}>
       <View style={styles.pkmInfo}>
-        <View style={{flexDirection:'row'}}>
+        <View style={{ flexDirection: 'row' }}>
           <Text style={styles.idContainer}>#0{pokemon.data.id}</Text>
         </View>
         <Text style={styles.titleContainer}>{formattedPokeName}</Text>
@@ -45,14 +45,14 @@ export default function PokeCard(props: Props) {
         <Image source={require('../../../assets/pokeballBackground.png')} style={{ width: 150, height: 150, position: 'relative', opacity: 0.4 }} />
         <Image source={{ uri: pokemon.data.sprites.other['official-artwork'].front_default }} style={{ width: 120, height: 120, position: 'absolute' }} />
       </TouchableOpacity>
-      <TouchableOpacity style={{display:'flex', justifyContent:'flex-start', right:20}} onPress={()=>{
-           const newColor = heartColor === 'red' ? 'white' : 'red';
-          
-           setPreviousHeartColor(heartColor);
- 
-           setHeartColor(newColor);
+      <TouchableOpacity style={{ display: 'flex', justifyContent: 'flex-start', right: 20 }} onPress={() => {
+        const newColor = heartColor === 'red' ? 'white' : 'red';
+
+        setPreviousHeartColor(heartColor);
+
+        setHeartColor(newColor);
       }}>
-      <Heart color={heartColor} weight='fill'  size={24}/>
+        <Heart color={heartColor} weight='fill' size={24} />
       </TouchableOpacity>
     </View>
   );

@@ -1,4 +1,3 @@
-
 export const typeColors = {
   normal: "#A8A77A",
   fire: "#EE8130",
@@ -36,7 +35,7 @@ export const typeColorVariants={
     rock: "#474026",
     ghost: "#472b53",
     dragon: "#f87070",
-    dark: "#72d221c",
+    dark: "#3d2d25",
     steel: "#454545",
     fairy: "#f87ea7",
 }
@@ -82,5 +81,14 @@ export const typeBorderColors = {
   steel: "#B7B7CE",
   fairy: "#e376ad",
 };
+
+export const  statColors={
+  hp: '#d43a48',
+  attack: '#faaa22',
+  defense: '#0094ed',
+  'special-attack': '#8fb0c5',
+  'special-defense': '#78c850',
+  speed: '#f85888',
+}
 
 

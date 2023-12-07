@@ -1,37 +1,37 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  wrapper:{
-    display:'flex',
-    flexDirection:'column'
+  wrapper: {
+    display: "flex",
+    flexDirection: "column",
   },
   pkmInfoContainer: {
     display: "flex",
     alignItems: "center",
-    height:240,
-    gap:10,
-    width:'100%',
-    position:'relative',
+    height: 240,
+    gap: 10,
+    width: "100%",
+    position: "relative",
   },
 
   imageContainer: {
     width: 200,
-    height: 200,  
+    height: 200,
   },
- 
-  shadowProp: {   
-    borderTopRightRadius:24,
-    borderTopLeftRadius:24,
-    backgroundColor:"#f2f5f7", 
-    marginTop:-20,
-  },  
+
+  shadowProp: {
+    borderTopRightRadius: 24,
+    borderTopLeftRadius: 24,
+    backgroundColor: "#f2f5f7",
+    marginTop: -20,
+  },
 
   titleContainer: {
     color: "#353535",
     fontWeight: "400",
     fontSize: 35,
     textTransform: "capitalize",
-    paddingTop:20
+    paddingTop: 20,
   },
 
   typeContainer: {
@@ -41,22 +41,65 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 8,
     maxWidth: "30%",
-    marginBottom:20
+    marginBottom: 20,
   },
 
-  sizeInformationsContainer:{
-    display:"flex",
-    flexDirection:'row',
-    gap:32,
-    alignItems:'center',
+  sizeInformationsContainer: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 32,
+    alignItems: "center",
   },
-  sizeContainer:{
-    fontSize:22
+  sizeContainer: {
+    fontSize: 22,
   },
 
-  statsContainer:{
+  statsContainer: {
+    paddingTop:20,
+    display: "flex",
+    width: "100%",
+  },
+
+  statsTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    paddingBottom: 10,
+    paddingLeft:10,
+  },
+  statHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "gray",
+  },
+  statRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+
+  },
+  statName: {
+    flex: 1,
+    textAlign: "left",
+  },
+
+  statValueContainer:{
+    width:'80%',
     display:'flex',
-    width:'100%'
-  }
+    justifyContent:'flex-start',
+  },
 
+  statValue: {
+    backgroundColor:'#42c963',
+    borderRadius:6,
+    overflow: 'hidden',
+  },
+
+  statValueText: {
+    textAlign: 'center',
+    color: 'white',
+},
 });
