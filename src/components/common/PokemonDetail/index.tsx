@@ -13,7 +13,6 @@ import { typeBgColors, statColors } from '../../../assets/pokeColors/styles';
 //Hook Imports
 import usePokemon from '../../../Hooks/Queries/usePokemon';
 
-
 type Props = {
     name: string;
     imageUrl: string;
@@ -21,7 +20,12 @@ type Props = {
 
 export default function PokeDetailScreen({ name }: Props) {
 
+    const { data: pokemon, isLoading } = usePokemon(name);
+    const baseStats = pokemon.stats;
+
     const rotation = useRef(new Animated.Value(0)).current;
+    const animatedStatScales = useRef(baseStats.map(() => new Animated.Value(0))).current;
+    const animatedTextOpacity = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
         const animation = Animated.loop(
@@ -30,17 +34,32 @@ export default function PokeDetailScreen({ name }: Props) {
                 duration: 30000,
                 easing: Easing.linear,
                 useNativeDriver: true,
+            }),
+
+        );
+
+        const statAnimations = baseStats.map((stat, index) =>
+            Animated.timing(animatedStatScales[index], {
+                toValue: 1,
+                duration: 240,
+                easing: Easing.linear,
+                useNativeDriver: true,
+                delay: 200
             })
         );
 
-        animation.start();
 
+
+        const parallelAnimation = Animated.parallel(statAnimations);
+        parallelAnimation.start();
+        animation.start();
 
         return () => {
             animation.stop();
+            parallelAnimation.stop();
 
         };
-    }, [rotation]);
+    }, [rotation, baseStats, animatedStatScales]);
 
     const rotateInterpolation = rotation.interpolate({
         inputRange: [0, 1],
@@ -51,7 +70,6 @@ export default function PokeDetailScreen({ name }: Props) {
         transform: [{ rotate: rotateInterpolation }],
     };
 
-    const { data: pokemon, isLoading } = usePokemon(name);
 
 
     if (isLoading) {
@@ -65,15 +83,12 @@ export default function PokeDetailScreen({ name }: Props) {
     const backgroundColor = typeBgColors[pokemon.types[0].type.name.toLowerCase()] || 'gray';
     const imageUrl = pokemon.sprites.other['official-artwork'].front_default;
 
-
     const pokeWeight = pokemon.weight.toString();
     const formattedPokeWeight = (pokeWeight.slice(0, -1) + "," + pokeWeight.slice(-1)) || "0.0";
 
     const pokeHeight = pokemon.height.toString();
     const formattedPokeHeight = (pokeHeight.slice(0, -1) + "," + pokeHeight.slice(-1)) || "0.0";
 
-
-    const baseStats = pokemon.stats;
 
     const statsAbreviation = {
         hp: 'HP',
@@ -91,10 +106,22 @@ export default function PokeDetailScreen({ name }: Props) {
             </View>
             <View style={styles.statValueContainer}>
                 <View style={[{ width: 255, backgroundColor: '#e5ebec', borderRadius: 6 }]}>
-                    <View style={[styles.statValue, { width: stat.base_stat + 20, backgroundColor: statColors[stat.stat.name.toLowerCase()] }]}>
+
+                    <Animated.View
+
+                        style={[styles.statValue,
+                        {
+                            transform: [
+                                { scaleX: animatedStatScales[index] }],
+                            width: stat.base_stat,
+                            height: 20,
+                            backgroundColor: statColors[stat.stat.name.toLowerCase()]
+                        }
+                        ]}
+                    >
 
                         <Text style={styles.statValueText}>{stat.base_stat}/255</Text>
-                    </View>
+                    </Animated.View>
                 </View>
             </View>
         </View>
@@ -110,15 +137,12 @@ export default function PokeDetailScreen({ name }: Props) {
 
         <View style={styles.wrapper}>
             <View style={[styles.pkmInfoContainer, { backgroundColor }]}>
-
                 <Animated.Image source={require('../../../assets/pokeballBackground.png')} style={[animatedStyles, { width: 250, height: 250, position: 'absolute', opacity: 0.4, justifyContent: 'center' }]} />
                 <View>
                     <Image source={{ uri: imageUrl }} style={styles.imageContainer} />
                 </View>
 
-
             </View>
-
             <View style={styles.pkmInfoWrapper}>
                 <View style={styles.pkmInfoContainer}>
                     <View>
@@ -127,7 +151,6 @@ export default function PokeDetailScreen({ name }: Props) {
                     <View style={styles.typeContainer}>
                         <RenderTypeBadges name={name} />
                     </View>
-
                     <View style={styles.sizeInformationsContainer}>
                         <View>
 
@@ -139,12 +162,10 @@ export default function PokeDetailScreen({ name }: Props) {
                             <Text style={{ color: 'gray', textAlign: 'left' }}>Height</Text>
                         </View>
                     </View>
-
                     <View style={styles.statsContainer}>
                         <Text style={styles.statsTitle}>Base Stats</Text>
                         {renderedBaseStats}
                     </View>
-
                 </View>
             </View>
 
