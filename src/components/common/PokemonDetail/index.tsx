@@ -1,5 +1,6 @@
 //Libraries Imports
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Animated, Easing } from 'react-native';
+import { useEffect, useRef } from 'react';
 
 
 //Components Imports
@@ -19,6 +20,36 @@ type Props = {
 };
 
 export default function PokeDetailScreen({ name }: Props) {
+
+    const rotation = useRef(new Animated.Value(0)).current;
+
+    useEffect(() => {
+        const animation = Animated.loop(
+            Animated.timing(rotation, {
+                toValue: 1,
+                duration: 30000,
+                easing: Easing.linear,
+                useNativeDriver: true,
+            })
+        );
+
+        animation.start();
+
+
+        return () => {
+            animation.stop();
+
+        };
+    }, [rotation]);
+
+    const rotateInterpolation = rotation.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg'],
+    });
+
+    const animatedStyles = {
+        transform: [{ rotate: rotateInterpolation }],
+    };
 
     const { data: pokemon, isLoading } = usePokemon(name);
 
@@ -55,12 +86,12 @@ export default function PokeDetailScreen({ name }: Props) {
 
     const renderedBaseStats = baseStats.map((stat, index) => (
         <View key={index} style={styles.statRow}>
-            <View style={{ width: '20%' }}>
+            <View style={{ width: '15%' }}>
                 <Text style={styles.statName}>{statsAbreviation[stat.stat.name.toLowerCase()]}:</Text>
             </View>
             <View style={styles.statValueContainer}>
                 <View style={[{ width: 255, backgroundColor: '#e5ebec', borderRadius: 6 }]}>
-                    <View style={[styles.statValue, { width: stat.base_stat * 1.5, backgroundColor: statColors[stat.stat.name.toLowerCase()] }]}>
+                    <View style={[styles.statValue, { width: stat.base_stat + 20, backgroundColor: statColors[stat.stat.name.toLowerCase()] }]}>
 
                         <Text style={styles.statValueText}>{stat.base_stat}/255</Text>
                     </View>
@@ -76,10 +107,11 @@ export default function PokeDetailScreen({ name }: Props) {
     ));
 
     return (
+
         <View style={styles.wrapper}>
             <View style={[styles.pkmInfoContainer, { backgroundColor }]}>
-                <Image source={require('../../../assets/pokeballBackground.png')} style={{ width: 220, height: 220, position: 'absolute', left: 20, opacity: 0.4 }} />
 
+                <Animated.Image source={require('../../../assets/pokeballBackground.png')} style={[animatedStyles, { width: 250, height: 250, position: 'absolute', opacity: 0.4, justifyContent: 'center' }]} />
                 <View>
                     <Image source={{ uri: imageUrl }} style={styles.imageContainer} />
                 </View>
@@ -87,7 +119,7 @@ export default function PokeDetailScreen({ name }: Props) {
 
             </View>
 
-            <View style={styles.shadowProp}>
+            <View style={styles.pkmInfoWrapper}>
                 <View style={styles.pkmInfoContainer}>
                     <View>
                         <Text style={styles.titleContainer} >{name}</Text>

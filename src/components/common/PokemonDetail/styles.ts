@@ -8,10 +8,11 @@ export const styles = StyleSheet.create({
   pkmInfoContainer: {
     display: "flex",
     alignItems: "center",
-    height: 240,
+    height: 264,
     gap: 10,
     width: "100%",
     position: "relative",
+    
   },
 
   imageContainer: {
@@ -19,7 +20,7 @@ export const styles = StyleSheet.create({
     height: 200,
   },
 
-  shadowProp: {
+  pkmInfoWrapper: {
     borderTopRightRadius: 24,
     borderTopLeftRadius: 24,
     backgroundColor: "#f2f5f7",
@@ -87,7 +88,7 @@ export const styles = StyleSheet.create({
   },
 
   statValueContainer:{
-    width:'80%',
+    width:'85%',
     display:'flex',
     justifyContent:'flex-start',
   },
