@@ -5,10 +5,11 @@ import { useEffect, useRef } from 'react';
 
 //Components Imports
 import RenderTypeBadges from '../RenderTypeBadges';
+import PokemonStatus from '../PokemonStatus'
 
 //Styles Imports
 import { styles } from './styles';
-import { typeBgColors, statColors } from '../../../assets/pokeColors/styles';
+import { typeBgColors } from '../../../assets/pokeColors/styles';
 
 //Hook Imports
 import usePokemon from '../../../Hooks/Queries/usePokemon';
@@ -21,11 +22,10 @@ type Props = {
 export default function PokeDetailScreen({ name }: Props) {
 
     const { data: pokemon, isLoading } = usePokemon(name);
-    const baseStats = pokemon.stats;
+
 
     const rotation = useRef(new Animated.Value(0)).current;
-    const animatedStatScales = useRef(baseStats.map(() => new Animated.Value(0))).current;
-    const animatedTextOpacity = useRef(new Animated.Value(0)).current;
+
 
     useEffect(() => {
         const animation = Animated.loop(
@@ -38,28 +38,12 @@ export default function PokeDetailScreen({ name }: Props) {
 
         );
 
-        const statAnimations = baseStats.map((stat, index) =>
-            Animated.timing(animatedStatScales[index], {
-                toValue: 1,
-                duration: 240,
-                easing: Easing.linear,
-                useNativeDriver: true,
-                delay: 200
-            })
-        );
-
-
-
-        const parallelAnimation = Animated.parallel(statAnimations);
-        parallelAnimation.start();
         animation.start();
 
         return () => {
             animation.stop();
-            parallelAnimation.stop();
-
         };
-    }, [rotation, baseStats, animatedStatScales]);
+    }, [rotation]);
 
     const rotateInterpolation = rotation.interpolate({
         inputRange: [0, 1],
@@ -89,43 +73,6 @@ export default function PokeDetailScreen({ name }: Props) {
     const pokeHeight = pokemon.height.toString();
     const formattedPokeHeight = (pokeHeight.slice(0, -1) + "," + pokeHeight.slice(-1)) || "0.0";
 
-
-    const statsAbreviation = {
-        hp: 'HP',
-        attack: 'ATK',
-        defense: 'DEF',
-        "special-attack": 'SPA',
-        'special-defense': 'SPDEF',
-        speed: 'SPD'
-    }
-
-    const renderedBaseStats = baseStats.map((stat, index) => (
-        <View key={index} style={styles.statRow}>
-            <View style={{ width: '15%' }}>
-                <Text style={styles.statName}>{statsAbreviation[stat.stat.name.toLowerCase()]}:</Text>
-            </View>
-            <View style={styles.statValueContainer}>
-                <View style={[{ width: 255, backgroundColor: '#e5ebec', borderRadius: 6 }]}>
-
-                    <Animated.View
-
-                        style={[styles.statValue,
-                        {
-                            transform: [
-                                { scaleX: animatedStatScales[index] }],
-                            width: stat.base_stat,
-                            height: 20,
-                            backgroundColor: statColors[stat.stat.name.toLowerCase()]
-                        }
-                        ]}
-                    >
-
-                        <Text style={styles.statValueText}>{stat.base_stat}/255</Text>
-                    </Animated.View>
-                </View>
-            </View>
-        </View>
-    ));
 
     const abilities = pokemon.abilities;
 
@@ -162,9 +109,8 @@ export default function PokeDetailScreen({ name }: Props) {
                             <Text style={{ color: 'gray', textAlign: 'left' }}>Height</Text>
                         </View>
                     </View>
-                    <View style={styles.statsContainer}>
-                        <Text style={styles.statsTitle}>Base Stats</Text>
-                        {renderedBaseStats}
+                    <View>
+                        <PokemonStatus name={pokemon.name} />
                     </View>
                 </View>
             </View>
