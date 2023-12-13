@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, } from 'react-native';
 import { styles } from './styles';
 import { Heart } from 'phosphor-react-native';
-import { typeBgColors, typeBorderColors } from '../../../assets/pokeColors/styles';
+import { typeBgColors, typeBorderColors, typeColorVariants, typeColors } from '../../../assets/pokeColors/styles';
 import usePokemon from '../../../Hooks/Queries/usePokemon';
 import RenderTypeBadges from '../RenderTypeBadges';
 
@@ -27,7 +27,7 @@ export default function PokeCard(props: Props) {
 
   const formattedPokeName = name.charAt(0).toUpperCase() + name.slice(1);
   const backgroundColor = typeBgColors[pokemon.data.types[0].type.name.toLowerCase()] || 'gray';
-  const borderColor = typeBorderColors[pokemon.data.types[0].type.name.toLowerCase()] || 'gray';
+  const borderColor = typeBorderColors[pokemon.data.types[0].type.name.toLowerCase()] || 'gray'; 
 
   return (
     <View style={[styles.wrap, { backgroundColor }, { borderColor }]}>

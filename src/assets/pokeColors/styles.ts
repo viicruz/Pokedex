@@ -19,26 +19,26 @@ export const typeColors = {
   fairy: "#D685AD",
 };
 
-export const typeColorVariants={
-    normal: "#aca974",
-    fire: "#fc0c0b",
-    water: "#08517a",
-    electric: "#969101",
-    grass: "#204000",
-    ice: "#103d43",
-    fighting: "#800b11",
-    poison: "#611380",
-    ground: "#bfac21",
-    flying: "#085764",
-    psychic: "#8a0532",
-    bug: "#91ba2e",
-    rock: "#474026",
-    ghost: "#472b53",
-    dragon: "#f87070",
-    dark: "#3d2d25",
-    steel: "#454545",
-    fairy: "#f87ea7",
-}
+export const typeColorVariants = {
+  normal: "#aca974",
+  fire: "#fc0c0b",
+  water: "#08517a",
+  electric: "#969101",
+  grass: "#204000",
+  ice: "#103d43",
+  fighting: "#800b11",
+  poison: "#611380",
+  ground: "#bfac21",
+  flying: "#085764",
+  psychic: "#8a0532",
+  bug: "#91ba2e",
+  rock: "#474026",
+  ghost: "#472b53",
+  dragon: "#f87070",
+  dark: "#3d2d25",
+  steel: "#454545",
+  fairy: "#f87ea7",
+};
 
 export const typeBgColors = {
   normal: "#cecd95",
@@ -47,7 +47,7 @@ export const typeBgColors = {
   electric: "#fff672",
   grass: "#aaed83",
   ice: "#b1fffc",
-  fighting:"#fe8883",
+  fighting: "#fe8883",
   poison: "#ee90ec",
   ground: "#fee58a",
   flying: "#b895ff",
@@ -82,13 +82,11 @@ export const typeBorderColors = {
   fairy: "#e376ad",
 };
 
-export const  statColors={
-  hp: '#d43a48',
-  attack: '#faaa22',
-  defense: '#0094ed',
-  'special-attack': '#8fb0c5',
-  'special-defense': '#78c850',
-  speed: '#f85888',
-}
-
-
+export const statColors = {
+  hp: "#d43a48",
+  attack: "#faaa22",
+  defense: "#0094ed",
+  "special-attack": "#8fb0c5",
+  "special-defense": "#78c850",
+  speed: "#f85888",
+};

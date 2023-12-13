@@ -1,5 +1,5 @@
 
-import { Text } from 'react-native'; // Importe o Text da biblioteca React Native
+import { Text, View } from 'react-native'; // Importe o Text da biblioteca React Native
 import { LinearGradient } from 'expo-linear-gradient';
 import { typeColors, typeColorVariants } from '../../../assets/pokeColors/styles';
 import usePokemon from '../../../Hooks/Queries/usePokemon';
@@ -20,11 +20,12 @@ const RenderTypeBadges: React.FC<Props> = (props) => {
       const backgroundColor = typeColors[types.type.name.toLowerCase()] || 'grey';
 
       return (
-        <LinearGradient start={{ x: 0.5, y: 1 }} end={{ x: 0.5, y: 0 }} colors={[`${typeColorVariants[types.type.name.toLowerCase()]}`, `${backgroundColor}`,]} key={index} style={[styles.badge, { backgroundColor }]}>
+        <View style={styles.badgeContainer}>
+          <LinearGradient start={{ x: 0.5, y: 1 }} end={{ x: 0.5, y: 0 }} colors={[`${typeColorVariants[types.type.name.toLowerCase()]}`, `${backgroundColor}`,]} key={index} style={[styles.badge, { backgroundColor }]}>
+            <Text style={styles.badgeText}>{formattedPokeTypeText}</Text>
+          </LinearGradient>
+        </View>
 
-        <Text style={styles.badgeText}>{formattedPokeTypeText}</Text>
-
-      </LinearGradient>
       );
     });
   };
@@ -32,7 +33,7 @@ const RenderTypeBadges: React.FC<Props> = (props) => {
   return (
     <>{renderTypeBadges()}</>
   );
-  
+
 };
 
 export default RenderTypeBadges;

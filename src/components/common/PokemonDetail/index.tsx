@@ -9,7 +9,7 @@ import PokemonStatus from '../PokemonStatus'
 
 //Styles Imports
 import { styles } from './styles';
-import { typeBgColors } from '../../../assets/pokeColors/styles';
+import { typeBgColors, typeColors } from '../../../assets/pokeColors/styles';
 
 //Hook Imports
 import usePokemon from '../../../Hooks/Queries/usePokemon';
@@ -65,13 +65,15 @@ export default function PokeDetailScreen({ name }: Props) {
     }
 
     const backgroundColor = typeBgColors[pokemon.types[0].type.name.toLowerCase()] || 'gray';
+    const variantColors = typeColors[pokemon.types[0].type.name.toLowerCase()] || 'gray';
+
     const imageUrl = pokemon.sprites.other['official-artwork'].front_default;
 
     const pokeWeight = pokemon.weight.toString();
-    const formattedPokeWeight = (pokeWeight.slice(0, -1) + "," + pokeWeight.slice(-1)) || "0.0";
+    const formattedPokeWeight = (pokeWeight.slice(0, -1) + "." + pokeWeight.slice(-1)) || "0.0";
 
     const pokeHeight = pokemon.height.toString();
-    const formattedPokeHeight = (pokeHeight.slice(0, -1) + "," + pokeHeight.slice(-1)) || "0.0";
+    const formattedPokeHeight = (pokeHeight.slice(0, -1) + "." + pokeHeight.slice(-1)) || "0.0";
 
 
     const abilities = pokemon.abilities;
@@ -93,7 +95,7 @@ export default function PokeDetailScreen({ name }: Props) {
             <View style={styles.pkmInfoWrapper}>
                 <View style={styles.pkmInfoContainer}>
                     <View>
-                        <Text style={styles.titleContainer} >{name}</Text>
+                        <Text style={[styles.titleContainer, { color: variantColors }]} >{name}</Text>
                     </View>
                     <View style={styles.typeContainer}>
                         <RenderTypeBadges name={name} />
@@ -101,12 +103,12 @@ export default function PokeDetailScreen({ name }: Props) {
                     <View style={styles.sizeInformationsContainer}>
                         <View>
 
-                            <Text style={styles.sizeContainer}>{formattedPokeWeight} KG</Text>
-                            <Text style={{ color: 'gray', textAlign: 'left' }}>Weight</Text>
+                            <Text style={[styles.sizeContainer, { color: variantColors }]}>{formattedPokeWeight} KG</Text>
+                            <Text style={[{ color: 'gray', textAlign: 'left' }, { color: variantColors }]}>Weight</Text>
                         </View>
                         <View>
-                            <Text style={styles.sizeContainer}>{formattedPokeHeight} M</Text>
-                            <Text style={{ color: 'gray', textAlign: 'left' }}>Height</Text>
+                            <Text style={[styles.sizeContainer, { color: variantColors }]}>{formattedPokeHeight} M</Text>
+                            <Text style={[{ color: 'gray', textAlign: 'left' }, { color: variantColors }]}>Height</Text>
                         </View>
                     </View>
                     <View>
