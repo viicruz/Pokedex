@@ -1,21 +1,61 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrap: {
-    width: 180,
-    height: 180,
+    display: "flex",
+    flexDirection: "row",
+    position: "relative",
+    width: "100%",
+    height: 128,
     borderRadius: 10,
-    borderColor:'black',
-    borderWidth:2,
-    marginHorizontal: 5,
+    borderWidth: 2,
     padding: 5,
-    justifyContent: 'flex-start', 
-    alignItems: 'center', 
+    marginBottom: 12,
+    overflow: "hidden",
+  },
+
+  imageContainer: {
+    width: "50%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    display: "flex",
   },
 
   titleContainer: {
-    color: 'black',
-    fontWeight: 'bold',
-    fontSize:22
+    color: "black",
+    fontWeight: "bold",
+    fontSize: 22,
+    flexDirection: "row",
+    paddingLeft: 10,
+  },
+
+  idContainer: {
+    color: "black",
+    fontWeight: "bold",
+    fontSize: 20,
+    paddingLeft: 10,
+  },
+
+  pkmInfo: {
+    display: "flex",
+    flexDirection: "column",
+    width: "50%",
+    gap: 6,
+  },
+
+  badgesContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    gap: 4,
+    maxWidth: "50%",
+  },
+
+  loadingText: {
+    color: "black",
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });

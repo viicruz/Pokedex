@@ -6,11 +6,15 @@ import LoginInput from '../../components/common/Inputs'
 import Button from '../../components/common/Button'
 import Footer from '../../components/common/Footer'
 import firebase from '../../services/firebaseConnection';
+import { ISDEV } from '../../variables';
 
 type Props = {}
 
 export default function Login({ }: Props) {
   const navigation = useNavigation();
+  if(ISDEV){
+    navigation.navigate('HomeStack' as never);
+  }
 
   const [userCredentials, setUserCredentials] = useState({
     email: "", password: "", name: ""
@@ -52,7 +56,7 @@ export default function Login({ }: Props) {
         }} placeholder='Senha' secureTextEntry={true} />
         <Button name='Entrar' onPress={handleLogin} />
       </View>
-      <Footer textName="Don't have an account?" buttonName="Sign Up" goTo="SignUp" />
+      <Footer textName="Don't have an account?" buttonName="Sign Up" goTo="Sign Up" />
 
     </View>
 
